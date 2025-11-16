@@ -34,6 +34,11 @@ body {
     justify-content: center;
     color: white;
     cursor: pointer;
+    transition: color 0.5s ease, border-radius 0.3s ease; 
+    
+}
+.icon:hover {
+    border-radius: 18px;
 }
 
 
