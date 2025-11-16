@@ -1,4 +1,0 @@
-- [x] Edit index.html: Remove nested desktop div, add taskbar div inside outer desktop, move icons into taskbar.
-- [x] Edit styles.css: Add .taskbar styles for bottom center positioning with 20px margin and flex row layout, resize .icon to 60x60px.
-- [x] Edit index.html: Add 4 more icons (Project 3-6) to make 6 total.
-- [x] Edit styles.css: Add macOS-like liquid glass background to .taskbar (blur, transparency, border, shadow).
