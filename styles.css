@@ -1,6 +1,5 @@
 
 html {
-  cursor: url('http://www.rw-designer.com/cursor-extern.php?id=236833'), auto;
   overflow: hidden;
 }
 body {
@@ -10,17 +9,18 @@ body {
 
 .desktop {
     position: relative;
-    margin: 40px 50px 100px 40px; 
-    background-color: rgb(50,50,50); 
-    border: 2px solid rgb(100,100,100); 
+    margin: 40px 50px 100px 40px;
+    background-color: rgb(50,50,50);
+    border: 2px solid rgb(100,100,100);
     border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
     box-sizing: border-box;
-    min-height: calc(100vh - 150px); 
-    width: calc(100vw - 100px); 
-    box-shadow: 0 0 20px white, 0 0 40px black; 
+    min-height: calc(100vh - 150px);
+    width: calc(100vw - 100px);
+    box-shadow: 0 0 20px white, 0 0 40px black;
+    overflow: hidden;
 }
 
 .taskbar {
