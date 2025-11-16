@@ -9,33 +9,234 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
          <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
     </head>
     <body>   
         
         <nav>
             <div class="button-container">
-                    <div style="text-align: left; margin-left: 30px; color: aliceblue; font-size: xx-large;">
+                    <div style="text-align: left; margin-left: 50px; color: aliceblue; font-size: xx-large;">
                         <div class="hoveredtext" >
                             <span class="inter-black">MATTEO</span>
                             <span class="imperial-script-regular" style="margin-left: -5px; letter-spacing: 1px;">'s portfolio</span>
                         </div>
-                    </div>  
-                    <div style="text-align: right; margin-right: 30px; color: aliceblue; font-size: xx-large;">
+                    </div>
+                    <div style="text-align: right; margin-right: 50px; color: aliceblue; font-size: xx-large;">
                         <div class="hoveredtext">
                             <span class="inter-black">CONTACT ME</span>
                         </div>
-                    </div>  
+                    </div>
             </div>
         </nav> 
 
         <div class="desktop">
-    <div class="desktop">
-    <!-- Example icon -->
-    <div class="icon">Project 1</div>
-    <div class="icon">Project 2</div>
-</div>
-
+            <div class="desktopbg"></div>
+        <div class="color-picker" id="colorPicker">
+            <div class="window-controls">
+                <div class="control-btn close-btn" id="closePicker"></div>
+                <div class="control-btn minimize-btn"></div>
+                <div class="control-btn maximize-btn"></div>
+            </div>
+            <div class="color-input-group">
+                <div id="colorWheel"></div>
+            </div>
+        </div>
+        <div class="reset-popup" id="resetPopup">
+            <div class="reset-content">
+                <p>Do you want to revert to default settings?</p>
+                <div class="reset-buttons">
+                    <button id="confirmReset">Yes, I'm sure.</button>
+                    <button id="cancelReset">No</button>
+                </div>
+            </div>
+        </div>
+            <div class="taskbar">
+                <div class="icon"><img src="images/About Me.png" alt="AboutMe"></div>
+                <div class="icon"><img src="images/behance.png" alt="Behance"></div>
+                <div class="icon"><img src="images/movie.png" alt="Camera"></div>
+                <div class="icon"><img src="images/media.png" alt="Photoshop"></div>
+                <div class="icon"><img src="images/explorer.png" alt="Explorer"></div>
+                <div class="icon" id="project5"><img src="images/colors.png" alt="Colors"></div>
+                <div class="icon"><img src="images/trash.png" alt="Trash"></div>
+            </div>
         </div>
 
     </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const taskbar = document.querySelector('.taskbar');
+            const icons = Array.from(document.querySelectorAll('.icon'));
+            const project5Icon = document.getElementById('project5');
+            const colorPicker = document.getElementById('colorPicker');
+            const closePickerBtn = document.getElementById('closePicker');
+            const resetPopup = document.getElementById('resetPopup');
+            const confirmResetBtn = document.getElementById('confirmReset');
+            const cancelResetBtn = document.getElementById('cancelReset');
+            const desktopbg = document.querySelector('.desktopbg');
+            const desktop = document.querySelector('.desktop');
+
+            // Initialize iro color picker
+            const colorPickerIro = new iro.ColorPicker('#colorWheel', {
+                width: 200,
+                color: '#FFFFFF'
+            });
+
+            let isDragging = false;
+            let dragOffsetX = 0;
+            let dragOffsetY = 0;
+
+            project5Icon.addEventListener('click', function() {
+                if (colorPicker.style.display === 'flex') {
+                    colorPicker.classList.remove('show');
+                    setTimeout(() => {
+                        colorPicker.style.display = 'none';
+                    }, 300);
+                } else {
+                    colorPicker.style.display = 'flex';
+                    setTimeout(() => {
+                        colorPicker.classList.add('show');
+                    }, 10);
+                }
+            });
+
+            // Mouse tracking for light effect
+            document.addEventListener('mousemove', function(e) {
+                const colorPickerRect = colorPicker.getBoundingClientRect();
+                const resetPopupRect = resetPopup.getBoundingClientRect();
+
+                if (colorPicker.style.display === 'flex') {
+                    const x = ((e.clientX - colorPickerRect.left) / colorPickerRect.width) * 100;
+                    const y = ((e.clientY - colorPickerRect.top) / colorPickerRect.height) * 100;
+                    colorPicker.style.setProperty('--mouse-x', x + '%');
+                    colorPicker.style.setProperty('--mouse-y', y + '%');
+                }
+
+                if (resetPopup.style.display === 'flex') {
+                    const x = ((e.clientX - resetPopupRect.left) / resetPopupRect.width) * 100;
+                    const y = ((e.clientY - resetPopupRect.top) / resetPopupRect.height) * 100;
+                    resetPopup.style.setProperty('--mouse-x', x + '%');
+                    resetPopup.style.setProperty('--mouse-y', y + '%');
+                }
+            });
+
+            closePickerBtn.addEventListener('click', function() {
+                colorPicker.classList.remove('show');
+                setTimeout(() => {
+                    colorPicker.style.display = 'none';
+                }, 300);
+            });
+
+            // Dragging functionality
+            const windowControls = document.querySelector('.window-controls');
+
+            windowControls.addEventListener('mousedown', function(e) {
+                // Convert from transform centering to absolute positioning on first drag
+                if (colorPicker.style.transform !== 'none') {
+                    const rect = colorPicker.getBoundingClientRect();
+                    colorPicker.style.left = rect.left + 'px';
+                    colorPicker.style.top = rect.top + 'px';
+                    colorPicker.style.transform = 'none';
+                }
+                isDragging = true;
+                dragOffsetX = e.clientX - colorPicker.offsetLeft;
+                dragOffsetY = e.clientY - colorPicker.offsetTop;
+                colorPicker.style.cursor = 'move';
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    colorPicker.style.left = (e.clientX - dragOffsetX) + 'px';
+                    colorPicker.style.top = (e.clientY - dragOffsetY) + 'px';
+                    colorPicker.style.transform = 'none';
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+                colorPicker.style.cursor = 'default';
+            });
+
+            // Update gradient and glow in real-time
+            colorPickerIro.on('color:change', function(color) {
+                const hexColor = color.hexString;
+                desktopbg.style.backgroundImage = `conic-gradient(from 0deg, ${hexColor}, rgb(29,29,29), ${hexColor})`;
+                desktop.style.boxShadow = `0 0 20px ${hexColor}, 0 0 40px rgb(29,29,29)`;
+            });
+
+            taskbar.addEventListener('mousemove', function(e) {
+                let closestIcon = null;
+                let minDistance = Infinity;
+
+                icons.forEach(icon => {
+                    const rect = icon.getBoundingClientRect();
+                    const iconCenterX = rect.left + rect.width / 2;
+                    const iconCenterY = rect.top + rect.height / 2;
+                    const distance = Math.sqrt((e.clientX - iconCenterX) ** 2 + (e.clientY - iconCenterY) ** 2);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIcon = icon;
+                    }
+                });
+
+                icons.forEach((icon, index) => {
+                    if (icon === closestIcon) {
+                        icon.style.transform = 'translateY(-5px) scale(1.1)';
+                        icon.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.5)';
+                    } else {
+                        const closestIndex = icons.indexOf(closestIcon);
+                        const currentIndex = index;
+                        const distance = Math.abs(currentIndex - closestIndex);
+                        if (distance === 1) {
+                            const direction = currentIndex < closestIndex ? -1 : 1;
+                            icon.style.transform = `translate(${direction * 5}px, -2px)`;
+                        } else {
+                            icon.style.transform = '';
+                        }
+                        icon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+                    }
+                });
+            });
+
+            taskbar.addEventListener('mouseleave', function() {
+                icons.forEach(icon => {
+                    icon.style.transform = '';
+                    icon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+                });
+            });
+
+            // Trash icon functionality
+            const trashIcon = document.querySelector('.icon:last-child');
+            trashIcon.addEventListener('click', function() {
+                resetPopup.style.display = 'flex';
+                setTimeout(() => {
+                    resetPopup.classList.add('show');
+                }, 10);
+            });
+
+            confirmResetBtn.addEventListener('click', function() {
+                // Close all popups
+                colorPicker.classList.remove('show');
+                setTimeout(() => {
+                    colorPicker.style.display = 'none';
+                }, 300);
+
+                resetPopup.classList.remove('show');
+                setTimeout(() => {
+                    resetPopup.style.display = 'none';
+                }, 300);
+
+                // Reset to default colors
+                colorPickerIro.color.set('#FFFFFF');
+                desktopbg.style.backgroundImage = `conic-gradient(from 0deg, #FFFFFF, rgb(29,29,29), #FFFFFF)`;
+                desktop.style.boxShadow = `0 0 20px #FFFFFF, 0 0 40px rgb(29,29,29)`;
+            });
+
+            cancelResetBtn.addEventListener('click', function() {
+                resetPopup.classList.remove('show');
+                setTimeout(() => {
+                    resetPopup.style.display = 'none';
+                }, 300);
+            });
+        });
+    </script>
 </html>
