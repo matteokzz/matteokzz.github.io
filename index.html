@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
          <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5/dist/iro.min.js"></script>
+        <script src="iro.min.js"></script>
     </head>
     <body>   
         
@@ -75,7 +75,7 @@
             const desktopbg = document.querySelector('.desktopbg');
             const desktop = document.querySelector('.desktop');
 
-            // Initialize iro color picker
+        
             const colorPickerIro = new iro.ColorPicker('#colorWheel', {
                 width: 200,
                 color: '#FFFFFF'
@@ -98,8 +98,6 @@
                     }, 10);
                 }
             });
-
-            // Mouse tracking for light effect
             document.addEventListener('mousemove', function(e) {
                 const colorPickerRect = colorPicker.getBoundingClientRect();
                 const resetPopupRect = resetPopup.getBoundingClientRect();
