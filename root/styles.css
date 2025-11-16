@@ -1,0 +1,99 @@
+
+html {
+  cursor: url('http://www.rw-designer.com/cursor-extern.php?id=236833'), auto;
+}
+body {
+    background-color: rgb(29, 29, 29); /* very dark gray, almost black */
+    color: aliceblue; /* default text color if needed */
+}
+
+.desktop {
+    position: absolute;
+    top: 100px;       /* margin from top */
+    left: 100px;      /* margin from left */
+    right: 100px;     /* margin from right */
+    bottom: 100px;    /* margin from bottom */
+    background-color: rgb(50,50,50); /* clearly visible darker gray */
+    border: 2px solid rgb(100,100,100); /* optional border to make it stand out */
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Example icons */
+.icon {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(100,100,100);
+    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+.button-container {
+  display:flex;
+  background-color: rgb(46, 46, 46, 0.5);
+  width: 100%;
+  max-width: 1920px;
+  height: 70px;
+  align-items: center;
+  align-self: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px,
+        rgba(25, 25, 25, 0.5) 0px 5px 15px;
+}
+
+.hoveredtext .inter-black,
+.hoveredtext  .imperial-script-regular {
+    color: aliceblue;
+    transition: color 0.5s ease, font-size 0.3s ease; 
+}
+
+.hoveredtext  .inter-black:hover,
+.hoveredtext  .imperial-script-regular:hover {
+    color: #ee94d7; 
+    font-size: 1.2em; 
+}
+
+
+
+
+.inter-light {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+.inter-normal {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.inter-bold {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.inter-black {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.imperial-script-regular {
+  font-family: "Imperial Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
