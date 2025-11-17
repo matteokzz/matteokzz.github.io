@@ -1,240 +1,432 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Matteo's Portfolio</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-         <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
-        <script src="iro.min.js"></script>
-    </head>
-    <body>   
-        
-        <nav>
-            <div class="button-container">
-                    <div style="text-align: left; margin-left: 50px; color: aliceblue; font-size: xx-large;">
-                        <div class="hoveredtext" >
-                            <span class="inter-black">MATTEO</span>
-                            <span class="imperial-script-regular" style="margin-left: -5px; letter-spacing: 1px;">'s portfolio</span>
-                        </div>
-                    </div>
-                    <div style="text-align: right; margin-right: 50px; color: aliceblue; font-size: xx-large;">
-                        <div class="hoveredtext">
-                            <span class="inter-black">CONTACT ME</span>
-                        </div>
-                    </div>
-            </div>
-        </nav> 
-
-        <div class="desktop">
-            <div class="desktopbg"></div>
-        <div class="color-picker" id="colorPicker">
-            <div class="window-controls">
-                <div class="control-btn close-btn" id="closePicker"></div>
-                <div class="control-btn minimize-btn"></div>
-                <div class="control-btn maximize-btn"></div>
-            </div>
-            <div class="color-input-group">
-                <div id="colorWheel"></div>
-            </div>
+<head>
+  <title>Matteo's Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
+  <script src="iro.min.js"></script>
+</head>
+<body>
+  <nav>
+    <div class="button-container">
+      <div style="text-align: left; margin-left: 50px; color: aliceblue; font-size: xx-large;">
+        <div class="hoveredtext">
+          <span class="inter-black">MATTEO</span>
+          <span class="imperial-script-regular" style="margin-left: -5px; letter-spacing: 1px;">'s portfolio</span>
         </div>
-        <div class="reset-popup" id="resetPopup">
-            <div class="reset-content">
-                <p>Do you want to revert to default settings?</p>
-                <div class="reset-buttons">
-                    <button id="confirmReset">Yes, I'm sure.</button>
-                    <button id="cancelReset">No</button>
-                </div>
-            </div>
+      </div>
+      <div style="text-align: right; margin-right: 50px; color: aliceblue; font-size: xx-large;">
+        <div class="hoveredtext">
+          <span class="inter-black">CONTACT ME</span>
         </div>
-            <div class="taskbar">
-                <div class="icon"><img src="images/About Me.png" alt="AboutMe"></div>
-                <div class="icon"><img src="images/behance.png" alt="Behance"></div>
-                <div class="icon"><img src="images/movie.png" alt="Camera"></div>
-                <div class="icon"><img src="images/media.png" alt="Photoshop"></div>
-                <div class="icon"><img src="images/explorer.png" alt="Explorer"></div>
-                <div class="icon" id="project5"><img src="images/colors.png" alt="Colors"></div>
-                <div class="icon"><img src="images/trash.png" alt="Trash"></div>
-            </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="desktop">
+    <div class="overlay" id="overlay" style="display: none;"></div>
+    <div class="desktopbg"></div>
+    <div class="color-picker" id="colorPicker">
+      <div class="window-controls">
+        <div class="control-btn close-btn" id="closePicker"></div>
+        <div class="control-btn minimize-btn"></div>
+        <div class="control-btn maximize-btn"></div>
+      </div>
+      <div class="color-input-group">
+        <div id="colorWheel"></div>
+      </div>
+    </div>
+    <div class="about-me-popup" id="aboutMePopup">
+      <div class="window-controls">
+        <div class="control-btn close-btn" id="closeAboutMe"></div>
+        <div class="control-btn minimize-btn"></div>
+        <div class="control-btn maximize-btn"></div>
+      </div>
+      <div class="about-me-content">
+        <div class="about-me-image">
+          <!-- Image will go here -->
         </div>
+        <div class="about-me-text">
+          <h1>ABOUT ME</h1>
+          <p>Hello! I'm Matteo, a passionate designer and developer. This is my portfolio website where I showcase my work and creativity.</p>
+          <p>Feel free to explore the icons below to see more of my projects and get in touch!</p>
+        </div>
+      </div>
+    </div>
+    <div class="reset-popup" id="resetPopup">
+      <div class="reset-content">
+        <p>Do you want to revert to <span class="default-word">default</span> settings?</p>
+        <div class="reset-buttons">
+          <button id="confirmReset">Yes, I'm sure.</button>
+          <button id="cancelReset">Not yet...</button>
+        </div>
+      </div>
+    </div>
+    <div class="loadingcircle" id="loadingCircle" style="display: none;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="taskbar">
+      <div class="icon"><img src="images/About Me.png" alt="AboutMe"></div>
+      <div class="icon"><img src="images/explorer.png" alt="Explorer"></div>
+      <div class="icon"><img src="images/behance.png" alt="Behance"></div>
+      <div class="icon"><img src="images/movie.png" alt="Camera"></div>
+      <div class="icon"><img src="images/media.png" alt="Photoshop"></div>
+      <div class="icon" id="project5"><img src="images/colors.png" alt="Colors"></div>
+      <div class="icon"><img src="images/trash.png" alt="Trash"></div>
+    </div>
+  </div>
 
-    </body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const taskbar = document.querySelector('.taskbar');
-            const icons = Array.from(document.querySelectorAll('.icon'));
-            const project5Icon = document.getElementById('project5');
-            const colorPicker = document.getElementById('colorPicker');
-            const closePickerBtn = document.getElementById('closePicker');
-            const resetPopup = document.getElementById('resetPopup');
-            const confirmResetBtn = document.getElementById('confirmReset');
-            const cancelResetBtn = document.getElementById('cancelReset');
-            const desktopbg = document.querySelector('.desktopbg');
-            const desktop = document.querySelector('.desktop');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const taskbar = document.querySelector('.taskbar');
+      const icons = Array.from(document.querySelectorAll('.icon'));
+      const project5Icon = document.getElementById('project5');
+      const colorPicker = document.getElementById('colorPicker');
+      const closePickerBtn = document.getElementById('closePicker');
+      const aboutMeIcon = document.querySelector('.icon:first-child');
+      const aboutMePopup = document.getElementById('aboutMePopup');
+      const closeAboutMeBtn = document.getElementById('closeAboutMe');
 
-        
-            const colorPickerIro = new iro.ColorPicker('#colorWheel', {
-                width: 200,
-                color: '#FFFFFF'
-            });
+      const resetPopup = document.getElementById('resetPopup');
+      const confirmResetBtn = document.getElementById('confirmReset');
+      const cancelResetBtn = document.getElementById('cancelReset');
+      const desktopbg = document.querySelector('.desktopbg');
+      const desktop = document.querySelector('.desktop');
+      const overlay = document.getElementById('overlay');
 
-            let isDragging = false;
-            let dragOffsetX = 0;
-            let dragOffsetY = 0;
 
-            project5Icon.addEventListener('click', function() {
-                if (colorPicker.style.display === 'flex') {
-                    colorPicker.classList.remove('show');
-                    setTimeout(() => {
-                        colorPicker.style.display = 'none';
-                    }, 300);
-                } else {
-                    colorPicker.style.display = 'flex';
-                    setTimeout(() => {
-                        colorPicker.classList.add('show');
-                    }, 10);
-                }
-            });
-            document.addEventListener('mousemove', function(e) {
-                const colorPickerRect = colorPicker.getBoundingClientRect();
-                const resetPopupRect = resetPopup.getBoundingClientRect();
 
-                if (colorPicker.style.display === 'flex') {
-                    const x = ((e.clientX - colorPickerRect.left) / colorPickerRect.width) * 100;
-                    const y = ((e.clientY - colorPickerRect.top) / colorPickerRect.height) * 100;
-                    colorPicker.style.setProperty('--mouse-x', x + '%');
-                    colorPicker.style.setProperty('--mouse-y', y + '%');
-                }
+      const colorPickerIro = new iro.ColorPicker('#colorWheel', {
+        width: 200,
+        color: '#FFFFFF'
+      });
 
-                if (resetPopup.style.display === 'flex') {
-                    const x = ((e.clientX - resetPopupRect.left) / resetPopupRect.width) * 100;
-                    const y = ((e.clientY - resetPopupRect.top) / resetPopupRect.height) * 100;
-                    resetPopup.style.setProperty('--mouse-x', x + '%');
-                    resetPopup.style.setProperty('--mouse-y', y + '%');
-                }
-            });
+      const loadingCircle = document.querySelector('.loadingcircle');
 
-            closePickerBtn.addEventListener('click', function() {
-                colorPicker.classList.remove('show');
-                setTimeout(() => {
-                    colorPicker.style.display = 'none';
-                }, 300);
-            });
+      let isDragging = false;
+      let dragOffsetX = 0;
+      let dragOffsetY = 0;
 
-            // Dragging functionality
-            const windowControls = document.querySelector('.window-controls');
 
-            windowControls.addEventListener('mousedown', function(e) {
-                // Convert from transform centering to absolute positioning on first drag
-                if (colorPicker.style.transform !== 'none') {
-                    const rect = colorPicker.getBoundingClientRect();
-                    colorPicker.style.left = rect.left + 'px';
-                    colorPicker.style.top = rect.top + 'px';
-                    colorPicker.style.transform = 'none';
-                }
-                isDragging = true;
-                dragOffsetX = e.clientX - colorPicker.offsetLeft;
-                dragOffsetY = e.clientY - colorPicker.offsetTop;
-                colorPicker.style.cursor = 'move';
-            });
 
-            document.addEventListener('mousemove', function(e) {
-                if (isDragging) {
-                    colorPicker.style.left = (e.clientX - dragOffsetX) + 'px';
-                    colorPicker.style.top = (e.clientY - dragOffsetY) + 'px';
-                    colorPicker.style.transform = 'none';
-                }
-            });
+      project5Icon.addEventListener('click', function() {
+        // Remove active class from all icons
+        icons.forEach(icon => icon.classList.remove('active'));
 
-            document.addEventListener('mouseup', function() {
-                isDragging = false;
-                colorPicker.style.cursor = 'default';
-            });
+        if (colorPicker.style.display === 'flex') {
+          colorPicker.classList.remove('show');
+          setTimeout(() => {
+            colorPicker.style.display = 'none';
+          }, 300);
+          project5Icon.classList.remove('active');
+        } else {
+          colorPicker.style.display = 'flex';
+          setTimeout(() => {
+            colorPicker.classList.add('show');
+          }, 10);
+          project5Icon.classList.add('active');
+        }
+      });
 
-            // Update gradient and glow in real-time
-            colorPickerIro.on('color:change', function(color) {
-                const hexColor = color.hexString;
-                desktopbg.style.backgroundImage = `conic-gradient(from 0deg, ${hexColor}, rgb(29,29,29), ${hexColor})`;
-                desktop.style.boxShadow = `0 0 20px ${hexColor}, 0 0 40px rgb(29,29,29)`;
-            });
+      aboutMeIcon.addEventListener('click', function() {
+        // Remove active class from all icons
+        icons.forEach(icon => icon.classList.remove('active'));
 
-            taskbar.addEventListener('mousemove', function(e) {
-                let closestIcon = null;
-                let minDistance = Infinity;
+        if (aboutMePopup.style.display === 'flex') {
+          aboutMePopup.classList.remove('show');
+          setTimeout(() => {
+            aboutMePopup.style.display = 'none';
+          }, 300);
+          aboutMeIcon.classList.remove('active');
+        } else {
+          aboutMePopup.style.display = 'flex';
+          setTimeout(() => {
+            aboutMePopup.classList.add('show');
+          }, 10);
+          aboutMeIcon.classList.add('active');
+        }
+      });
 
-                icons.forEach(icon => {
-                    const rect = icon.getBoundingClientRect();
-                    const iconCenterX = rect.left + rect.width / 2;
-                    const iconCenterY = rect.top + rect.height / 2;
-                    const distance = Math.sqrt((e.clientX - iconCenterX) ** 2 + (e.clientY - iconCenterY) ** 2);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        closestIcon = icon;
-                    }
-                });
+      closeAboutMeBtn.addEventListener('click', function() {
+        aboutMePopup.classList.remove('show');
+        setTimeout(() => {
+          aboutMePopup.style.display = 'none';
+        }, 300);
+        aboutMeIcon.classList.remove('active');
+      });
 
-                icons.forEach((icon, index) => {
-                    if (icon === closestIcon) {
-                        icon.style.transform = 'translateY(-5px) scale(1.1)';
-                        icon.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.5)';
-                    } else {
-                        const closestIndex = icons.indexOf(closestIcon);
-                        const currentIndex = index;
-                        const distance = Math.abs(currentIndex - closestIndex);
-                        if (distance === 1) {
-                            const direction = currentIndex < closestIndex ? -1 : 1;
-                            icon.style.transform = `translate(${direction * 5}px, -2px)`;
-                        } else {
-                            icon.style.transform = '';
-                        }
-                        icon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-                    }
-                });
-            });
+      // Close about me popup when clicking outside
+      document.addEventListener('click', function(e) {
+        if (aboutMePopup.style.display === 'flex' && !aboutMePopup.contains(e.target) && !aboutMeIcon.contains(e.target)) {
+          aboutMePopup.classList.remove('show');
+          setTimeout(() => {
+            aboutMePopup.style.display = 'none';
+          }, 300);
+          aboutMeIcon.classList.remove('active');
+        }
+      });
 
-            taskbar.addEventListener('mouseleave', function() {
-                icons.forEach(icon => {
-                    icon.style.transform = '';
-                    icon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-                });
-            });
+      aboutMePopup.addEventListener('click', function() {
+        icons.forEach(icon => icon.classList.remove('active'));
+        aboutMeIcon.classList.add('active');
+      });
 
-            
-            const trashIcon = document.querySelector('.icon:last-child');
-            trashIcon.addEventListener('click', function() {
-                resetPopup.style.display = 'flex';
-                setTimeout(() => {
-                    resetPopup.classList.add('show');
-                }, 10);
-            });
+      document.addEventListener('mousemove', function(e) {
+        const colorPickerRect = colorPicker.getBoundingClientRect();
+        const resetPopupRect = resetPopup.getBoundingClientRect();
+        const aboutMePopupRect = aboutMePopup.getBoundingClientRect();
+        const desktopRect = desktop.getBoundingClientRect();
 
-            confirmResetBtn.addEventListener('click', function() {
-                // Close all popups
-                colorPicker.classList.remove('show');
-                setTimeout(() => {
-                    colorPicker.style.display = 'none';
-                }, 300);
+        if (colorPicker.style.display === 'flex') {
+          const x = ((e.clientX - colorPickerRect.left) / colorPickerRect.width) * 100;
+          const y = ((e.clientY - colorPickerRect.top) / colorPickerRect.height) * 100;
+          colorPicker.style.setProperty('--mouse-x', x + '%');
+          colorPicker.style.setProperty('--mouse-y', y + '%');
+        }
 
-                resetPopup.classList.remove('show');
-                setTimeout(() => {
-                    resetPopup.style.display = 'none';
-                }, 300);
+        if (resetPopup.style.display === 'flex') {
+          const x = ((e.clientX - resetPopupRect.left) / resetPopupRect.width) * 100;
+          const y = ((e.clientY - resetPopupRect.top) / resetPopupRect.height) * 100;
+          resetPopup.style.setProperty('--mouse-x', x + '%');
+          resetPopup.style.setProperty('--mouse-y', y + '%');
+        }
 
-                // Reset to default colors
-                colorPickerIro.color.set('#FFFFFF');
-                desktopbg.style.backgroundImage = `conic-gradient(from 0deg, #FFFFFF, rgb(29,29,29), #FFFFFF)`;
-                desktop.style.boxShadow = `0 0 20px #FFFFFF, 0 0 40px rgb(29,29,29)`;
-            });
+        if (aboutMePopup.style.display === 'flex') {
+          const x = ((e.clientX - aboutMePopupRect.left) / aboutMePopupRect.width) * 100;
+          const y = ((e.clientY - aboutMePopupRect.top) / aboutMePopupRect.height) * 100;
+          aboutMePopup.style.setProperty('--mouse-x', x + '%');
+          aboutMePopup.style.setProperty('--mouse-y', y + '%');
+        }
 
-            cancelResetBtn.addEventListener('click', function() {
-                resetPopup.classList.remove('show');
-                setTimeout(() => {
-                    resetPopup.style.display = 'none';
-                }, 300);
-            });
+        const x = ((e.clientX - desktopRect.left) / desktopRect.width) * 100;
+        const y = ((e.clientY - desktopRect.top) / desktopRect.height) * 100;
+        desktop.style.setProperty('--mouse-x', x + '%');
+        desktop.style.setProperty('--mouse-y', y + '%');
+      });
+
+      closePickerBtn.addEventListener('click', function() {
+        colorPicker.classList.remove('show');
+        setTimeout(() => {
+          colorPicker.style.display = 'none';
+        }, 300);
+        project5Icon.classList.remove('active');
+      });
+
+
+
+      // Close color picker when clicking outside
+      document.addEventListener('click', function(e) {
+        if (colorPicker.style.display === 'flex' && !colorPicker.contains(e.target) && !project5Icon.contains(e.target)) {
+          colorPicker.classList.remove('show');
+          setTimeout(() => {
+            colorPicker.style.display = 'none';
+          }, 300);
+          project5Icon.classList.remove('active');
+        }
+      });
+
+      // Close reset popup when clicking outside
+      document.addEventListener('click', function(e) {
+        if (resetPopup.style.display === 'flex' && !resetPopup.contains(e.target) && !trashIcon.contains(e.target)) {
+          resetPopup.classList.remove('show');
+          setTimeout(() => {
+            resetPopup.style.display = 'none';
+          }, 300);
+          overlay.classList.remove('fade-in');
+          overlay.classList.add('fade-out');
+          setTimeout(() => {
+            overlay.style.display = 'none';
+            overlay.classList.remove('fade-out');
+          }, 500);
+          trashIcon.classList.remove('active');
+        }
+      });
+
+      colorPicker.addEventListener('click', function() {
+        icons.forEach(icon => icon.classList.remove('active'));
+        project5Icon.classList.add('active');
+      });
+
+      resetPopup.addEventListener('click', function() {
+        icons.forEach(icon => icon.classList.remove('active'));
+        trashIcon.classList.add('active');
+      });
+
+
+      // Dragging functionality for color picker and about me popup
+      const windowControls = document.querySelectorAll('.window-controls');
+
+      windowControls.forEach(controls => {
+        controls.addEventListener('mousedown', function(e) {
+          const popup = controls.parentElement;
+          if (popup.style.transform !== 'none') {
+            const rect = popup.getBoundingClientRect();
+            popup.style.left = rect.left + 'px';
+            popup.style.top = rect.top + 'px';
+            popup.style.transform = 'none';
+          }
+          isDragging = true;
+          dragOffsetX = e.clientX - popup.offsetLeft;
+          dragOffsetY = e.clientY - popup.offsetTop;
+          popup.style.cursor = 'move';
         });
-    </script>
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]');
+          if (popup) {
+            popup.style.left = (e.clientX - dragOffsetX) + 'px';
+            popup.style.top = (e.clientY - dragOffsetY) + 'px';
+            popup.style.transform = 'none';
+          }
+        }
+      });
+
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+        const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]');
+        if (popup) {
+          popup.style.cursor = 'default';
+        }
+      });
+
+      // Update gradient and glow in real-time
+      colorPickerIro.on('color:change', function(color) {
+        const hexColor = color.hexString;
+        desktopbg.style.backgroundImage = `conic-gradient(from 0deg, ${hexColor}, rgb(29,29,29), ${hexColor})`;
+        desktop.style.boxShadow = `0 0 20px ${hexColor}, 0 0 40px rgb(29,29,29)`;
+        loadingCircle.style.backgroundImage = `conic-gradient(from 0deg, ${hexColor}, rgb(29,29,29), ${hexColor})`;
+      });
+
+      taskbar.addEventListener('mousemove', function(e) {
+        let closestIcon = null;
+        let minDistance = Infinity;
+
+        icons.forEach(icon => {
+          const rect = icon.getBoundingClientRect();
+          const iconCenterX = rect.left + rect.width / 2;
+          const iconCenterY = rect.top + rect.height / 2;
+          const distance = Math.sqrt((e.clientX - iconCenterX) ** 2 + (e.clientY - iconCenterY) ** 2);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIcon = icon;
+          }
+        });
+
+        icons.forEach((icon, index) => {
+          if (icon === closestIcon) {
+            icon.style.transform = 'translateY(-5px) scale(1.1)';
+            icon.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.5)';
+          } else {
+            const closestIndex = icons.indexOf(closestIcon);
+            const currentIndex = index;
+            const distance = Math.abs(currentIndex - closestIndex);
+            if (distance === 1) {
+              const direction = currentIndex < closestIndex ? -1 : 1;
+              icon.style.transform = `translate(${direction * 5}px, -2px)`;
+            } else {
+              icon.style.transform = '';
+            }
+            icon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+          }
+        });
+      });
+
+      taskbar.addEventListener('mouseleave', function() {
+        icons.forEach(icon => {
+          icon.style.transform = '';
+          icon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+        });
+      });
+
+      const trashIcon = document.querySelector('.icon:last-child');
+      trashIcon.addEventListener('click', function() {
+        // Remove active class from all icons
+        icons.forEach(icon => icon.classList.remove('active'));
+        trashIcon.classList.add('active');
+
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('fade-in');
+        }, 10);
+
+        resetPopup.style.display = 'flex';
+        setTimeout(() => {
+          resetPopup.classList.add('show');
+        }, 10);
+      });
+
+      confirmResetBtn.addEventListener('click', function() {
+        // Close the reset popup immediately
+        resetPopup.classList.remove('show');
+        setTimeout(() => {
+          resetPopup.style.display = 'none';
+        }, 300);
+
+        // Show loading circle after popup closes
+        setTimeout(() => {
+          loadingCircle.style.display = 'block';
+          loadingCircle.classList.add('fade-in');
+        }, 300);
+
+        // Fake loading delay
+        setTimeout(() => {
+          colorPicker.classList.remove('show');
+          setTimeout(() => {
+            colorPicker.style.display = 'none';
+          }, 300);
+
+          // Remove active class from all icons
+          icons.forEach(icon => icon.classList.remove('active'));
+
+          colorPickerIro.color.set('#FFFFFF');
+          desktopbg.style.backgroundImage = `conic-gradient(from 0deg, #FFFFFF, rgb(29,29,29), #FFFFFF)`;
+          desktop.style.boxShadow = `0 0 20px #FFFFFF, 0 0 40px rgb(29,29,29)`;
+          loadingCircle.style.backgroundImage = `conic-gradient(from 0deg, #FFFFFF, rgb(29,29,29), #FFFFFF)`;
+
+          // Fade out loading circle
+          loadingCircle.classList.remove('fade-in');
+          loadingCircle.classList.add('fade-out');
+          setTimeout(() => {
+            loadingCircle.style.display = 'none';
+            loadingCircle.classList.remove('fade-out');
+          }, 500);
+
+          // Fade out overlay
+          overlay.classList.remove('fade-in');
+          overlay.classList.add('fade-out');
+          setTimeout(() => {
+            overlay.style.display = 'none';
+            overlay.classList.remove('fade-out');
+          }, 500);
+        }, 2300);
+      });
+
+      cancelResetBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        resetPopup.classList.remove('show');
+        setTimeout(() => {
+          resetPopup.style.display = 'none';
+        }, 300);
+        overlay.classList.remove('fade-in');
+        overlay.classList.add('fade-out');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          overlay.classList.remove('fade-out');
+        }, 500);
+
+        trashIcon.classList.remove('active');
+        if (colorPicker.style.display === 'flex') {
+          project5Icon.classList.add('active');
+        }
+      });
+    });
+  </script>
 </html>
