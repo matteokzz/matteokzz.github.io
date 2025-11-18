@@ -48,11 +48,12 @@
       </div>
       <div class="about-me-content">
         <div class="about-me-image">
+          <img src="images/myphoto.jpg" alt="My Photo">
         </div>
         <div class="about-me-text">
-          <h1>ABOUT ME 3</h1>
-          <p>Hello! I'm Matteo, a passionate designer and developer. This is my portfolio website where I showcase my work and creativity.</p>
-          <p>Feel free to explore the icons below to see more of my projects and get in touch!</p>
+          <h1><span class="colored-letters"><span>A</span><span>B</span><span>O</span><span>U</span><span>T</span></span> ME</h1>
+          <p>Hello! I'm Matteo, I'm in my second year at "Transilvania" University Of Brasov, following to obtain my diploma in Indulial Design. This is my portfolio website where I showcase my work and creativity.</p>
+          <p>Feel free to explore the icons below to see more of my <span class="floating-letters imperial-script-regular"><span>p</span><span>e</span><span>r</span><span>s</span><span>o</span><span>n</span><span>a</span><span>l</span></span> projects and GET IN TOUCH!</p>
         </div>
       </div>
     </div>
@@ -103,7 +104,7 @@
 
 
       const colorPickerIro = new iro.ColorPicker('#colorWheel', {
-        width: 200,
+        width: 350,
         color: '#FFFFFF'
       });
 
@@ -175,6 +176,15 @@
       aboutMePopup.addEventListener('click', function() {
         icons.forEach(icon => icon.classList.remove('active'));
         aboutMeIcon.classList.add('active');
+      });
+
+      const aboutMeImage = document.querySelector('.about-me-image');
+      aboutMeImage.addEventListener('mousemove', function(e) {
+        const rect = aboutMeImage.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        aboutMeImage.style.setProperty('--mouse-x', x + '%');
+        aboutMeImage.style.setProperty('--mouse-y', y + '%');
       });
 
       document.addEventListener('mousemove', function(e) {
@@ -386,10 +396,10 @@
           // Remove active class from all icons
           icons.forEach(icon => icon.classList.remove('active'));
 
-          colorPickerIro.color.set('#FFFFFF');
-          desktopbg.style.backgroundImage = `conic-gradient(from 0deg, #FFFFFF, rgb(29,29,29), #FFFFFF)`;
-          desktop.style.boxShadow = `0 0 20px #FFFFFF, 0 0 40px rgb(29,29,29)`;
-          loadingCircle.style.backgroundImage = `conic-gradient(from 0deg, #FFFFFF, rgb(29,29,29), #FFFFFF)`;
+          colorPickerIro.color.set('#FF4500');
+          desktopbg.style.backgroundImage = `conic-gradient(from 0deg, #FF4500, black, #FF4500)`;
+          desktop.style.boxShadow = `0 0 20px #FF4500, 0 0 40px black`;
+          loadingCircle.style.backgroundImage = `conic-gradient(from 0deg, #FF4500, black, #FF4500)`;
 
           // Fade out loading circle
           loadingCircle.classList.remove('fade-in');
