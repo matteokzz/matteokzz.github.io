@@ -52,9 +52,16 @@
         </div>
         <div class="about-me-text">
           <h1><span class="colored-letters"><span>A</span><span>B</span><span>O</span><span>U</span><span>T</span></span> ME</h1>
-          <p>Hello! I'm Matteo, I'm in my second year at "Transilvania" University Of Brasov, following to obtain my diploma in Indulial Design. This is my portfolio website where I showcase my work and creativity.</p>
+          <p>Hello! I'm Matteo, I'm in my second year at "Transilvania" University Of Brasov, following to obtain my diploma in Industrial Design. This is my portfolio website where I showcase my work and creativity.</p>
           <p>Feel free to explore the icons below to see more of my <span class="floating-letters imperial-script-regular"><span>p</span><span>e</span><span>r</span><span>s</span><span>o</span><span>n</span><span>a</span><span>l</span></span> projects and GET IN TOUCH!</p>
         </div>
+      </div>
+    </div>
+    <div class="education-popup" id="educationPopup">
+      <div class="window-controls">
+        <div class="control-btn close-btn" id="closeEducation"></div>
+        <div class="control-btn minimize-btn"></div>
+        <div class="control-btn maximize-btn"></div>
       </div>
     </div>
     <div class="reset-popup" id="resetPopup">
@@ -74,7 +81,7 @@
     </div>
     <div class="taskbar">
       <div class="icon"><img src="images/About Me.png" alt="AboutMe"></div>
-      <div class="icon"><img src="images/explorer.png" alt="Explorer"></div>
+      <div class="icon"><img src="images/Education.png" alt="Education"></div>
       <div class="icon"><img src="images/behance.png" alt="Behance"></div>
       <div class="icon"><img src="images/movie.png" alt="Camera"></div>
       <div class="icon"><img src="images/media.png" alt="Photoshop"></div>
@@ -93,6 +100,9 @@
       const aboutMeIcon = document.querySelector('.icon:first-child');
       const aboutMePopup = document.getElementById('aboutMePopup');
       const closeAboutMeBtn = document.getElementById('closeAboutMe');
+      const educationIcon = document.querySelector('.icon:nth-child(2)');
+      const educationPopup = document.getElementById('educationPopup');
+      const closeEducationBtn = document.getElementById('closeEducation');
 
       const resetPopup = document.getElementById('resetPopup');
       const confirmResetBtn = document.getElementById('confirmReset');
@@ -154,6 +164,25 @@
         }
       });
 
+      educationIcon.addEventListener('click', function() {
+        // Remove active class from all icons
+        icons.forEach(icon => icon.classList.remove('active'));
+
+        if (educationPopup.style.display === 'flex') {
+          educationPopup.classList.remove('show');
+          setTimeout(() => {
+            educationPopup.style.display = 'none';
+          }, 300);
+          educationIcon.classList.remove('active');
+        } else {
+          educationPopup.style.display = 'flex';
+          setTimeout(() => {
+            educationPopup.classList.add('show');
+          }, 10);
+          educationIcon.classList.add('active');
+        }
+      });
+
       closeAboutMeBtn.addEventListener('click', function() {
         aboutMePopup.classList.remove('show');
         setTimeout(() => {
@@ -162,20 +191,24 @@
         aboutMeIcon.classList.remove('active');
       });
 
-      // Close about me popup when clicking outside
-      document.addEventListener('click', function(e) {
-        if (aboutMePopup.style.display === 'flex' && !aboutMePopup.contains(e.target) && !aboutMeIcon.contains(e.target)) {
-          aboutMePopup.classList.remove('show');
-          setTimeout(() => {
-            aboutMePopup.style.display = 'none';
-          }, 300);
-          aboutMeIcon.classList.remove('active');
-        }
+      closeEducationBtn.addEventListener('click', function() {
+        educationPopup.classList.remove('show');
+        setTimeout(() => {
+          educationPopup.style.display = 'none';
+        }, 300);
+        educationIcon.classList.remove('active');
       });
+
+
 
       aboutMePopup.addEventListener('click', function() {
         icons.forEach(icon => icon.classList.remove('active'));
         aboutMeIcon.classList.add('active');
+      });
+
+      educationPopup.addEventListener('click', function() {
+        icons.forEach(icon => icon.classList.remove('active'));
+        educationIcon.classList.add('active');
       });
 
       const aboutMeImage = document.querySelector('.about-me-image');
@@ -187,10 +220,13 @@
         aboutMeImage.style.setProperty('--mouse-y', y + '%');
       });
 
+
+
       document.addEventListener('mousemove', function(e) {
         const colorPickerRect = colorPicker.getBoundingClientRect();
         const resetPopupRect = resetPopup.getBoundingClientRect();
         const aboutMePopupRect = aboutMePopup.getBoundingClientRect();
+        const educationPopupRect = educationPopup.getBoundingClientRect();
         const desktopRect = desktop.getBoundingClientRect();
 
         if (colorPicker.style.display === 'flex') {
@@ -212,6 +248,13 @@
           const y = ((e.clientY - aboutMePopupRect.top) / aboutMePopupRect.height) * 100;
           aboutMePopup.style.setProperty('--mouse-x', x + '%');
           aboutMePopup.style.setProperty('--mouse-y', y + '%');
+        }
+
+        if (educationPopup.style.display === 'flex') {
+          const x = ((e.clientX - educationPopupRect.left) / educationPopupRect.width) * 100;
+          const y = ((e.clientY - educationPopupRect.top) / educationPopupRect.height) * 100;
+          educationPopup.style.setProperty('--mouse-x', x + '%');
+          educationPopup.style.setProperty('--mouse-y', y + '%');
         }
 
         const x = ((e.clientX - desktopRect.left) / desktopRect.width) * 100;
@@ -276,9 +319,10 @@
         controls.addEventListener('mousedown', function(e) {
           const popup = controls.parentElement;
           if (popup.style.transform !== 'none') {
+            const desktopRect = desktop.getBoundingClientRect();
             const rect = popup.getBoundingClientRect();
-            popup.style.left = rect.left + 'px';
-            popup.style.top = rect.top + 'px';
+            popup.style.left = (rect.left - desktopRect.left) + 'px';
+            popup.style.top = (rect.top - desktopRect.top) + 'px';
             popup.style.transform = 'none';
           }
           isDragging = true;
@@ -290,7 +334,7 @@
 
       document.addEventListener('mousemove', function(e) {
         if (isDragging) {
-          const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]');
+          const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]') || document.querySelector('.education-popup[style*="left"]');
           if (popup) {
             popup.style.left = (e.clientX - dragOffsetX) + 'px';
             popup.style.top = (e.clientY - dragOffsetY) + 'px';
@@ -301,7 +345,7 @@
 
       document.addEventListener('mouseup', function() {
         isDragging = false;
-        const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]');
+        const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]') || document.querySelector('.education-popup[style*="left"]');
         if (popup) {
           popup.style.cursor = 'default';
         }
