@@ -7,6 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Inter:opsz,wght@14..32,900&display=swap" rel="stylesheet">
   <script src="iro.min.js"></script>
 </head>
@@ -63,6 +67,18 @@
         <div class="control-btn minimize-btn"></div>
         <div class="control-btn maximize-btn"></div>
       </div>
+      <div class="education-content">
+        <div class="education-item">
+          <div class="circle"></div>
+          <h2>"Transilvania" University of Brașov</h2>
+          <p>Industrial Design  |  Oct 2024 - Present</p>
+        </div>
+        <div class="education-item">
+          <div class="circle"></div>
+          <h2>"Edmond Nicolau" Technical College</h2>
+          <p>Mathematics & Computer Science | Sept 2020 - Jun 2024</p>
+        </div>
+      </div>
     </div>
     <div class="reset-popup" id="resetPopup">
       <div class="reset-content">
@@ -90,8 +106,13 @@
     </div>
   </div>
 
+  <div id="copyright">
+    © <span id="year"></span> Matteo's Portfolio. All Rights Reserved.
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('year').textContent = new Date().getFullYear();
       const taskbar = document.querySelector('.taskbar');
       const icons = Array.from(document.querySelectorAll('.icon'));
       const project5Icon = document.getElementById('project5');
