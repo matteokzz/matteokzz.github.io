@@ -78,6 +78,7 @@
           <h2>"Edmond Nicolau" Technical College</h2>
           <p>Mathematics & Computer Science | Sept 2020 - Jun 2024</p>
         </div>
+
       </div>
     </div>
     <div class="reset-popup" id="resetPopup">
@@ -124,6 +125,7 @@
       const educationIcon = document.querySelector('.icon:nth-child(2)');
       const educationPopup = document.getElementById('educationPopup');
       const closeEducationBtn = document.getElementById('closeEducation');
+      const educationContent = document.querySelector('.education-content');
 
       const resetPopup = document.getElementById('resetPopup');
       const confirmResetBtn = document.getElementById('confirmReset');
@@ -201,6 +203,8 @@
             educationPopup.classList.add('show');
           }, 10);
           educationIcon.classList.add('active');
+          // Reset scroll position
+          educationContent.scrollTop = 0;
         }
       });
 
@@ -218,6 +222,9 @@
           educationPopup.style.display = 'none';
         }, 300);
         educationIcon.classList.remove('active');
+
+        // Reset scroll position when closing
+        educationContent.scrollTop = 0;
       });
 
 
@@ -231,6 +238,8 @@
         icons.forEach(icon => icon.classList.remove('active'));
         educationIcon.classList.add('active');
       });
+
+
 
       const aboutMeImage = document.querySelector('.about-me-image');
       aboutMeImage.addEventListener('mousemove', function(e) {

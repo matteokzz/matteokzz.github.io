@@ -394,6 +394,7 @@ nav {
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   width: 600px;
   height: 600px;
+  overflow: visible;
 }
 
 .education-popup.show {
@@ -404,10 +405,21 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: flex-start;
+  gap:180px;
   padding: 0;
   height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+
+}
+
+.education-content::-webkit-scrollbar {
+  display: none;
 }
 
 .education-item {
@@ -416,11 +428,18 @@ nav {
   align-items: center;
   gap: 10px;
   text-align: center;
+  position: relative;
+  scroll-snap-align: start;
+  justify-content: center;
 }
+
+
+
+
 
 .circle {
   width: 598px;
-  height: 150px;
+  height: 350px;
   border-radius: 25px;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -773,4 +792,18 @@ nav {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   max-width: 500px;
   text-align: center;
+}
+
+#scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: white;
+  font-size: 1em;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
 }
