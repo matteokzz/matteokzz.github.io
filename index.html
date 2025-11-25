@@ -61,6 +61,26 @@
         </div>
       </div>
     </div>
+    <div class="about-me-popup" id="behancePopup" style="width: 900px; height: 500px;">
+      <div class="window-controls">
+        <div class="control-btn close-btn" id="closeBehance"></div>
+        <div class="control-btn minimize-btn"></div>
+        <div class="control-btn maximize-btn"></div>
+      </div>
+      <div class="behance-scroll-container">
+        <div class="behance-scroll-content">
+          <img src="images/BehanceProject1.png" alt="Behance Project 1">
+          <img src="images/BehanceProject2.png" alt="Behance Project 2">
+          <img src="images/BehanceProject3.png" alt="Behance Project 3">
+          <img src="images/BehanceProject4.png" alt="Behance Project 4">
+        
+          <img src="images/BehanceProject1.png" alt="Behance Project 1">
+          <img src="images/BehanceProject2.png" alt="Behance Project 2">
+          <img src="images/BehanceProject3.png" alt="Behance Project 3">
+          <img src="images/BehanceProject4.png" alt="Behance Project 4">
+        </div>
+      </div>
+    </div>
     <div class="education-popup" id="educationPopup">
       <div class="window-controls">
         <div class="control-btn close-btn" id="closeEducation"></div>
@@ -101,7 +121,6 @@
       <div class="icon"><img src="images/About Me.png" alt="AboutMe"></div>
       <div class="icon"><img src="images/Education.png" alt="Education"></div>
       <div class="icon"><img src="images/behance.png" alt="Behance"></div>
-      <div class="icon"><img src="images/movie.png" alt="Camera"></div>
       <div class="icon"><img src="images/media.png" alt="Photoshop"></div>
       <div class="icon" id="project5"><img src="images/colors.png" alt="Colors"></div>
       <div class="icon"><img src="images/trash.png" alt="Trash"></div>
@@ -147,6 +166,9 @@
       const educationPopup = document.getElementById('educationPopup');
       const closeEducationBtn = document.getElementById('closeEducation');
       const educationContent = document.querySelector('.education-content');
+      const behanceIcon = icons[2];
+      const behancePopup = document.getElementById('behancePopup');
+      const closeBehanceBtn = document.getElementById('closeBehance');
 
       const resetPopup = document.getElementById('resetPopup');
       const confirmResetBtn = document.getElementById('confirmReset');
@@ -253,6 +275,37 @@
       educationPopup.addEventListener('click', function() {
         icons.forEach(icon => icon.classList.remove('active'));
         educationIcon.classList.add('active');
+      });
+      behanceIcon.addEventListener('click', function() {
+        // Remove active class from all icons
+        icons.forEach(icon => icon.classList.remove('active'));
+
+        if (behancePopup.style.display === 'flex') {
+          behancePopup.classList.remove('show');
+          setTimeout(() => {
+            behancePopup.style.display = 'none';
+          }, 300);
+          behanceIcon.classList.remove('active');
+        } else {
+          behancePopup.style.display = 'flex';
+          setTimeout(() => {
+            behancePopup.classList.add('show');
+          }, 10);
+          behanceIcon.classList.add('active');
+        }
+      });
+
+      closeBehanceBtn.addEventListener('click', function() {
+        behancePopup.classList.remove('show');
+        setTimeout(() => {
+          behancePopup.style.display = 'none';
+        }, 300);
+        behanceIcon.classList.remove('active');
+      });
+
+      behancePopup.addEventListener('click', function() {
+        icons.forEach(icon => icon.classList.remove('active'));
+        behanceIcon.classList.add('active');
       });
 
       const aboutMeImage = document.querySelector('.about-me-image');
