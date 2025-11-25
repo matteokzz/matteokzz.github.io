@@ -19,7 +19,7 @@
     <div class="button-container">
       <div style="text-align: left; margin-left: 50px; color: aliceblue; font-size: xx-large;">
         <div class="hoveredtext">
-          <span class="inter-black">MATTEO</span>
+          <span class="inter-black" id="matteoText" style="cursor: pointer;">MATTEO</span>
           <span class="imperial-script-regular" style="margin-left: -5px; letter-spacing: 1px;">'s portfolio</span>
         </div>
       </div>
@@ -67,6 +67,7 @@
         <div class="control-btn minimize-btn"></div>
         <div class="control-btn maximize-btn"></div>
       </div>
+      <h1 class="education-header">EDUCATION</h1>
       <div class="education-content">
         <div class="education-item">
           <div class="circle"><img src="images/unitbv.png" alt="Unitbv Logo"></div>
@@ -122,6 +123,26 @@
       const aboutMeIcon = document.querySelector('.icon:first-child');
       const aboutMePopup = document.getElementById('aboutMePopup');
       const closeAboutMeBtn = document.getElementById('closeAboutMe');
+      
+      const matteoText = document.getElementById('matteoText');
+      matteoText.addEventListener('click', function() {
+        // Remove active class from all icons
+        icons.forEach(icon => icon.classList.remove('active'));
+        
+        if (aboutMePopup.style.display === 'flex') {
+          aboutMePopup.classList.remove('show');
+          setTimeout(() => {
+            aboutMePopup.style.display = 'none';
+          }, 300);
+          aboutMeIcon.classList.remove('active');
+        } else {
+          aboutMePopup.style.display = 'flex';
+          setTimeout(() => {
+            aboutMePopup.classList.add('show');
+          }, 10);
+          aboutMeIcon.classList.add('active');
+        }
+      });
       const educationIcon = document.querySelector('.icon:nth-child(2)');
       const educationPopup = document.getElementById('educationPopup');
       const closeEducationBtn = document.getElementById('closeEducation');
@@ -134,8 +155,6 @@
       const desktop = document.querySelector('.desktop');
       const overlay = document.getElementById('overlay');
 
-
-
       const colorPickerIro = new iro.ColorPicker('#colorWheel', {
         width: 350,
         color: '#FFFFFF'
@@ -146,8 +165,7 @@
       let isDragging = false;
       let dragOffsetX = 0;
       let dragOffsetY = 0;
-
-
+      let draggedPopup = null;
 
       project5Icon.addEventListener('click', function() {
         // Remove active class from all icons
@@ -227,8 +245,6 @@
         educationContent.scrollTop = 0;
       });
 
-
-
       aboutMePopup.addEventListener('click', function() {
         icons.forEach(icon => icon.classList.remove('active'));
         aboutMeIcon.classList.add('active');
@@ -239,8 +255,6 @@
         educationIcon.classList.add('active');
       });
 
-
-
       const aboutMeImage = document.querySelector('.about-me-image');
       aboutMeImage.addEventListener('mousemove', function(e) {
         const rect = aboutMeImage.getBoundingClientRect();
@@ -249,8 +263,6 @@
         aboutMeImage.style.setProperty('--mouse-x', x + '%');
         aboutMeImage.style.setProperty('--mouse-y', y + '%');
       });
-
-
 
       document.addEventListener('mousemove', function(e) {
         const colorPickerRect = colorPicker.getBoundingClientRect();
@@ -301,8 +313,6 @@
         project5Icon.classList.remove('active');
       });
 
-
-
       // Close color picker when clicking outside
       document.addEventListener('click', function(e) {
         if (colorPicker.style.display === 'flex' && !colorPicker.contains(e.target) && !project5Icon.contains(e.target)) {
@@ -341,7 +351,6 @@
         trashIcon.classList.add('active');
       });
 
-
       // Dragging functionality for color picker and about me popup
       const windowControls = document.querySelectorAll('.window-controls');
 
@@ -356,6 +365,7 @@
             popup.style.transform = 'none';
           }
           isDragging = true;
+          draggedPopup = popup;
           dragOffsetX = e.clientX - popup.offsetLeft;
           dragOffsetY = e.clientY - popup.offsetTop;
           popup.style.cursor = 'move';
@@ -363,21 +373,18 @@
       });
 
       document.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-          const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]') || document.querySelector('.education-popup[style*="left"]');
-          if (popup) {
-            popup.style.left = (e.clientX - dragOffsetX) + 'px';
-            popup.style.top = (e.clientY - dragOffsetY) + 'px';
-            popup.style.transform = 'none';
-          }
+        if (isDragging && draggedPopup) {
+          draggedPopup.style.left = (e.clientX - dragOffsetX) + 'px';
+          draggedPopup.style.top = (e.clientY - dragOffsetY) + 'px';
+          draggedPopup.style.transform = 'none';
         }
       });
 
       document.addEventListener('mouseup', function() {
         isDragging = false;
-        const popup = document.querySelector('.color-picker[style*="left"]') || document.querySelector('.about-me-popup[style*="left"]') || document.querySelector('.education-popup[style*="left"]');
-        if (popup) {
-          popup.style.cursor = 'default';
+        if (draggedPopup) {
+          draggedPopup.style.cursor = 'default';
+          draggedPopup = null;
         }
       });
 
@@ -512,5 +519,6 @@
         }
       });
     });
-  </script>
+</script>
+</script>
 </html>

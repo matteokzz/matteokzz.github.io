@@ -8,7 +8,7 @@ body {
 
 .desktop {
   position: relative;
-  margin:25px 50px 0px 40px;
+  margin: 25px 50px 0px 40px;
   background-color: rgb(50,50,50);
   background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.4) 0%, transparent 100%);
   border-radius: 25px;
@@ -19,7 +19,7 @@ body {
   min-height: calc(100vh - 150px);
   width: calc(100vw - 100px);
   box-shadow: 0 0 20px #FF4500, 0 0 40px black;
-  overflow: hidden;
+  overflow: show;
   backdrop-filter: blur(10px);
 }
 
@@ -406,7 +406,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap:180px;
+  gap:170px;
   padding: 0;
   height: calc(100% - 60px);
   overflow-y: auto;
@@ -415,11 +415,6 @@ nav {
   scroll-behavior: smooth;
   scrollbar-width: none;
   overscroll-behavior: contain;
-
-}
-
-.education-content::-webkit-scrollbar {
-  display: none;
 }
 
 .education-item {
@@ -429,7 +424,36 @@ nav {
   gap: 10px;
   text-align: center;
   position: relative;
-  scroll-snap-align: start;
+  scroll-snap-align: end;
+  justify-content: center;
+}
+
+.education-item:last-child {
+  margin-bottom: 0;
+}
+
+.education-content::-webkit-scrollbar {
+  display: none;
+}
+
+.education-header {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  color: white;
+  font-size: 4em;
+  text-align: center;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.education-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  position: relative;
+  scroll-snap-align: end;
   justify-content: center;
 }
 
