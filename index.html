@@ -56,8 +56,8 @@
         </div>
         <div class="about-me-text">
           <h1><span class="colored-letters"><span>A</span><span>B</span><span>O</span><span>U</span><span>T</span></span> ME</h1>
-          <p>Hello! I'm Matteo, I'm in my second year at "Transilvania" University Of Brasov, following to obtain my diploma in Industrial Design. This is my portfolio website where I showcase my work and creativity.</p>
-          <p>Feel free to explore the icons below to see more of my <span class="floating-letters imperial-script-regular"><span>p</span><span>e</span><span>r</span><span>s</span><span>o</span><span>n</span><span>a</span><span>l</span></span> projects and GET IN TOUCH!</p>
+          <p>Hello! I'm Matteo, I'm in my second year at "Transilvania" University Of Brasov, following to obtain my diploma in [Industrial Design]. This is my portfolio website where I showcase my work and creativity.</p>
+          <p>Feel free to explore the icons below to see more of my <span class="floating-letters imperial-script-regular"><span>p</span><span>e</span><span>r</span><span>s</span><span>o</span><span>n</span><span>a</span><span>l</span></span> projects and <span class="shake-text" style="color: #ffffff;">GET IN TOUCH!</span></p>
         </div>
       </div>
     </div>
@@ -69,15 +69,6 @@
       </div>
       <div class="behance-scroll-container">
         <div class="behance-scroll-content">
-          <img src="images/BehanceProject1.png" alt="Behance Project 1">
-          <img src="images/BehanceProject2.png" alt="Behance Project 2">
-          <img src="images/BehanceProject3.png" alt="Behance Project 3">
-          <img src="images/BehanceProject4.png" alt="Behance Project 4">
-        
-          <img src="images/BehanceProject1.png" alt="Behance Project 1">
-          <img src="images/BehanceProject2.png" alt="Behance Project 2">
-          <img src="images/BehanceProject3.png" alt="Behance Project 3">
-          <img src="images/BehanceProject4.png" alt="Behance Project 4">
         </div>
       </div>
     </div>
@@ -87,20 +78,21 @@
         <div class="control-btn minimize-btn"></div>
         <div class="control-btn maximize-btn"></div>
       </div>
-      <h1 class="education-header">EDUCATION</h1>
-      <div class="education-content">
-        <div class="education-item">
+      <h1 class="education-header focus-in-expand"><span class="colored-letters education-colored"><span>E</span><span>D</span><span>U</span><span>C</span><span>A</span><span>T</span><span>I</span><span>O</span><span>N</span></span></h1>
+      <div class="education-wrapper">
+        <div class="education-image-section">
           <div class="circle"><img src="images/unitbv.png" alt="Unitbv Logo"></div>
-          <h2>"Transilvania" University of Brașov</h2>
-          <p>Industrial Design  |  Oct 2024 - <span class="floating-letters" style="font-weight:300; font-size: 1em; color: aliceblue; text-shadow: 0 0 0px aliceblue;"><span>P</span><span>r</span><span>e</span><span>s</span><span>e</span><span>n</span><span>t</span></span></p>
         </div>
-        <div class="education-item">
-          <div class="circle"><img src="images/edmnicolau.png" alt="Edmnicolau Logo"></div>
-          <h2>"Edmond Nicolau" Technical College</h2>
-          <p>Mathematics & Computer Science | Sept 2020 - Jun 2024</p>
+        <div class="education-content">
+          <div class="education-item">
+            <div class="education-text-right">
+              <h2 class="education-uni">University of Transilvania</h2>
+              <p class="education-program">Industrial Design | 2024-Present</p>
+            </div>
+          </div>
         </div>
-
       </div>
+      <div class="scroll-indicator" id="scrollIndicator">scroll to go to older education<br>↓</div>
     </div>
     <div class="reset-popup" id="resetPopup">
       <div class="reset-content">
@@ -166,9 +158,11 @@
       const educationPopup = document.getElementById('educationPopup');
       const closeEducationBtn = document.getElementById('closeEducation');
       const educationContent = document.querySelector('.education-content');
-      const behanceIcon = icons[2];
+
+      const behanceIcon = document.querySelector('.icon:nth-child(3)');
       const behancePopup = document.getElementById('behancePopup');
       const closeBehanceBtn = document.getElementById('closeBehance');
+
 
       const resetPopup = document.getElementById('resetPopup');
       const confirmResetBtn = document.getElementById('confirmReset');
@@ -248,34 +242,6 @@
         }
       });
 
-      closeAboutMeBtn.addEventListener('click', function() {
-        aboutMePopup.classList.remove('show');
-        setTimeout(() => {
-          aboutMePopup.style.display = 'none';
-        }, 300);
-        aboutMeIcon.classList.remove('active');
-      });
-
-      closeEducationBtn.addEventListener('click', function() {
-        educationPopup.classList.remove('show');
-        setTimeout(() => {
-          educationPopup.style.display = 'none';
-        }, 300);
-        educationIcon.classList.remove('active');
-
-        // Reset scroll position when closing
-        educationContent.scrollTop = 0;
-      });
-
-      aboutMePopup.addEventListener('click', function() {
-        icons.forEach(icon => icon.classList.remove('active'));
-        aboutMeIcon.classList.add('active');
-      });
-
-      educationPopup.addEventListener('click', function() {
-        icons.forEach(icon => icon.classList.remove('active'));
-        educationIcon.classList.add('active');
-      });
       behanceIcon.addEventListener('click', function() {
         // Remove active class from all icons
         icons.forEach(icon => icon.classList.remove('active'));
@@ -295,6 +261,25 @@
         }
       });
 
+      closeAboutMeBtn.addEventListener('click', function() {
+        aboutMePopup.classList.remove('show');
+        setTimeout(() => {
+          aboutMePopup.style.display = 'none';
+        }, 300);
+        aboutMeIcon.classList.remove('active');
+      });
+
+      closeEducationBtn.addEventListener('click', function() {
+        educationPopup.classList.remove('show');
+        setTimeout(() => {
+          educationPopup.style.display = 'none';
+        }, 300);
+        educationIcon.classList.remove('active');
+
+        // Reset scroll position when closing
+        educationContent.scrollTop = 0;
+      });
+
       closeBehanceBtn.addEventListener('click', function() {
         behancePopup.classList.remove('show');
         setTimeout(() => {
@@ -303,10 +288,21 @@
         behanceIcon.classList.remove('active');
       });
 
+      aboutMePopup.addEventListener('click', function() {
+        icons.forEach(icon => icon.classList.remove('active'));
+        aboutMeIcon.classList.add('active');
+      });
+
+      educationPopup.addEventListener('click', function() {
+        icons.forEach(icon => icon.classList.remove('active'));
+        educationIcon.classList.add('active');
+      });
+
       behancePopup.addEventListener('click', function() {
         icons.forEach(icon => icon.classList.remove('active'));
         behanceIcon.classList.add('active');
       });
+
 
       const aboutMeImage = document.querySelector('.about-me-image');
       aboutMeImage.addEventListener('mousemove', function(e) {
@@ -322,6 +318,7 @@
         const resetPopupRect = resetPopup.getBoundingClientRect();
         const aboutMePopupRect = aboutMePopup.getBoundingClientRect();
         const educationPopupRect = educationPopup.getBoundingClientRect();
+        const behancePopupRect = behancePopup.getBoundingClientRect();
         const desktopRect = desktop.getBoundingClientRect();
 
         if (colorPicker.style.display === 'flex') {
@@ -350,6 +347,13 @@
           const y = ((e.clientY - educationPopupRect.top) / educationPopupRect.height) * 100;
           educationPopup.style.setProperty('--mouse-x', x + '%');
           educationPopup.style.setProperty('--mouse-y', y + '%');
+        }
+
+        if (behancePopup.style.display === 'flex') {
+          const x = ((e.clientX - behancePopupRect.left) / behancePopupRect.width) * 100;
+          const y = ((e.clientY - behancePopupRect.top) / behancePopupRect.height) * 100;
+          behancePopup.style.setProperty('--mouse-x', x + '%');
+          behancePopup.style.setProperty('--mouse-y', y + '%');
         }
 
         const x = ((e.clientX - desktopRect.left) / desktopRect.width) * 100;
